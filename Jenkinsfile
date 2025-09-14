@@ -11,7 +11,7 @@ pipeline {
         ECR_FRONTEND = '214863335760.dkr.ecr.ap-south-1.amazonaws.com/arena-frontend'
 
         // ECS Cluster and Services
-        ECS_CLUSTER = 'arena1'
+        ECS_CLUSTER = 'arena-1'
         ECS_BACKEND_SERVICE = 'arena-backend-task-service'
         ECS_FRONTEND_SERVICE = 'arena-frontend-task-service'
     }
