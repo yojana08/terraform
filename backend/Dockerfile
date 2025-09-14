@@ -1,14 +1,15 @@
 FROM python:3.8-alpine
 
-ENV BACKEND_URL = http://0.0.0.0:4000
-
 WORKDIR /app
 
-ADD backend/requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
 RUN pip install -r /app/requirements.txt
 
-ADD backend /app
+COPY . /app
+
+# Expose Flask port
+EXPOSE 8000
 
 ENTRYPOINT ["python"]
 CMD ["app.py"]

@@ -2,7 +2,7 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-ADD frontend /app
+COPY . /app
 
 
 RUN npm install
