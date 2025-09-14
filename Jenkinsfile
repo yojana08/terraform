@@ -7,8 +7,8 @@ pipeline {
         AWS_CREDENTIALS = 'aws-jenkins-credentials'    // ID of AWS credentials in Jenkins
 
         // ECR Repositories
-        ECR_BACKEND = '214863335760.dkr.ecr.us-east-1.amazonaws.com/arena-backend'
-        ECR_FRONTEND = '214863335760.dkr.ecr.us-east-1.amazonaws.com/arena-frontend'
+        ECR_BACKEND = '214863335760.dkr.ecr.ap-south-1.amazonaws.com/arena-backend'
+        ECR_FRONTEND = '214863335760.dkr.ecr.ap-south-1.amazonaws.com/arena-frontend'
 
         // ECS Cluster and Services
         ECS_CLUSTER = 'arena1'
