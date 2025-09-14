@@ -4,12 +4,12 @@ This repository contains a **Flask backend** and an **Express frontend** deploye
 
 ---
 
-Tech Stack
+**Tech Stack**
 
-Backend: Python 3.8, Flask
-Frontend: Node.js 16, Express, EJS
-Containerization: Docker
-AWS: ECR, ECS Fargate, VPC, Security Groups, CloudWatch Logs
+Backend: Python 3.8, Flask.
+Frontend: Node.js 16, Express, EJS.
+Containerization: Docker.
+AWS: ECR, ECS Fargate, VPC, Security Groups, CloudWatch Logs.
 
 ## **Repository Structure**
 
@@ -32,18 +32,22 @@ arena-dockerapp/
 ├── README.md
 └── .gitignore
 
-Steps to Deploy
+**Steps to Deploy**
 
-1️⃣ Dockerize Apps
-2️⃣ Build & Push Docker Images to ECR (Frontend & Backend)
+1️⃣ Dockerize Apps.
+
+2️⃣ Build & Push Docker Images to ECR (Frontend & Backend).
+
 3️⃣ Create ECS Cluster & Task Definitions
--Use Fargate launch type
--Assign VPC & Subnets
--Backend Task: port 8000
+-Use Fargate launch type.
+-Assign VPC & Subnets.
+-Backend Task: port 8000.
 -Frontend Task: port 3000, env BACKEND_URL=http://<backend-ip>:8000/api
+
 4️⃣ Create ECS Services
--Backend: port 8000 open
--Frontend: port 3000 open
+-Backend: port 8000 open.
+-Frontend: port 3000 open.
+
 5️⃣ Test
 -Backend: curl http://<backend-ip>:8000/api
 -Frontend: http://<frontend-ip>:3000/
