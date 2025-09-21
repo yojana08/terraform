@@ -4,7 +4,7 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
-const URL = process.env.BACKEND_URL || 'http://localhost:8000/api';
+const URL = process.env.BACKEND_URL || 'http://localhost:5000/api';
 
 
 
@@ -32,6 +32,7 @@ app.get('/', async function(req, res) {
     }
 });
 
-app.listen(3000, function() {
-    console.log('Arena listening on port 3000!');
-})
+const PORT = process.env.EXPRESS_PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Express listening on port ${PORT}`);
+});
