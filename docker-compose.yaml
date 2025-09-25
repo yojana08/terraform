@@ -8,9 +8,9 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "8000:8000"
+      - "5000:5000"
     networks:
-      - arena-network
+      - terraform-network
 
   frontend:
     build: frontend
@@ -18,7 +18,7 @@ services:
     volumes:
       - ./frontend:/app
     environment:
-      - BACKEND_URL=http://backend-host:8000/api
+      - BACKEND_URL=http://backend-host:5000/api
     ports:
       - "3000:3000"
     links:
@@ -26,7 +26,7 @@ services:
     depends_on:
       - backend
     networks:
-      - arena-network
+      - terraform-network
 
 networks:
-  arena-network: {}
+  terraform-network: {}
