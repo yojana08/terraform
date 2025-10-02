@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/yojana08/aws.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('frontend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Deploy Express') {
+            steps {
+                dir('frontend') {
+                    sh '''
+                    pm2 restart express-app || pm2 start app.js --name express-app
+                    pm2 save
+                    '''
+                }
+            }
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+
