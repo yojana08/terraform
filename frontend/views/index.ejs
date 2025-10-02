@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flask Express App</title>
 </head>
 <body>
+    <h1>Flask Express Application</h1>
     <p>HELLO FROM THE FRONTEND</p>
-    <p><%= data %></p>
-
+    
+    <h2>Names from Backend:</h2>
+    <% if (data && data.length > 0) { %>
+        <% data.forEach(function(name) { %>
+            <div class="name-item"><%= name %></div>
+        <% }) %>
+    <% } else { %>
+        <p>No data available</p>
+    <% } %>
 </body>
 <style>
     body {

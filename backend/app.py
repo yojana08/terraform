@@ -10,6 +10,10 @@ def hello_world():
    
    return render_template('index.html')
 
+@app.route('/health')
+def health():
+    return "OK", 200
+
 @app.route('/api', methods=['GET'])
 def api():
 
