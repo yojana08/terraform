@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    environment {
+        VENV_DIR = "${WORKSPACE}/backend/venv"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/yojana08/aws.git'
+            }
+        }
+
+        stage('Setup Python') {
+            steps {
+                dir('backend') {
+                    sh '''
+                    python3 -m venv venv
+                    source venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy Flask') {
+            steps {
+                dir('backend') {
+                    sh '''
+                    source venv/bin/activate
+                    pm2 restart flask-app || pm2 start venv/bin/python --name flask-app -- app.py
+                    pm2 save
+                    '''
+                }
+            }
+        }
+    }
+    triggers {
+        githubPush()
+    }
+}
+
