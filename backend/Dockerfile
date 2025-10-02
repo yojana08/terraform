@@ -8,8 +8,7 @@ RUN pip install -r /app/requirements.txt
 
 COPY . /app
 
-# Expose Flask port
-EXPOSE 5000
-
 ENTRYPOINT ["python"]
 CMD ["app.py"]
+
+EXPOSE 5000
