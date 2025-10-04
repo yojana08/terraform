@@ -1,0 +1,23 @@
+.terraform/
+.terraform.lock.hcl
+
+terraform.tfstate
+terraform.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+*.tfvars
+*.tfvars.json
+terraform.tfvars
+
+# Plan output
+*.plan
+
+.docker/
+.dockerignore
+
+.vscode/
+Jenkinsfile
+
