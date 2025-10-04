@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        BACKEND_DIR = 'backend'
+        PYTHON_VENV = "${BACKEND_DIR}/venv"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/yojana08/aws.git'
+            }
+        }
+        stage('Setup Python') {
+            steps {
+                sh """
+                if [ ! -d "${PYTHON_VENV}" ]; then
+                    python3 -m venv ${PYTHON_VENV}
+                fi
+                ${PYTHON_VENV}/bin/pip install --upgrade pip
+                ${PYTHON_VENV}/bin/pip install -r ${BACKEND_DIR}/requirements.txt
+                """
+            }
+        }
+        stage('Deploy Flask') {
+            steps {
+                sh """
+                pm2 delete flask-app || true
+                pm2 start ${PYTHON_VENV}/bin/python -- ${BACKEND_DIR}/app.py --name flask-app
+                pm2 save
+                """
+            }
+        }
+    }
+    post {
+        success { echo "Flask deployed successfully!" }
+        failure { echo "Flask deployment failed!" }
+    }
+}

@@ -1,23 +1,30 @@
 .terraform/
 .terraform.lock.hcl
 
+
 terraform.tfstate
 terraform.tfstate.*
+
 
 # Crash logs
 crash.log
 crash.*.log
 
+
 *.tfvars
 *.tfvars.json
 terraform.tfvars
 
-# Plan output
+__pycache__
+frontend@1.0.0
+session-manager-plugin.deb
+node
 *.plan
+
 
 .docker/
 .dockerignore
 
+
 .vscode/
 Jenkinsfile
-

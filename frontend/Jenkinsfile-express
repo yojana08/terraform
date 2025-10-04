@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    environment {
+        FRONTEND_DIR = 'frontend'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/yojana08/aws.git'
+            }
+        }
+        stage('Setup Node') {
+            steps {
+                sh """
+                cd ${FRONTEND_DIR}
+                npm install
+                """
+            }
+        }
+        stage('Deploy Express') {
+            steps {
+                sh """
+                cd ${FRONTEND_DIR}
+                pm2 delete express-app || true
+                pm2 start app.js --name express-app
+                pm2 save
+                """
+            }
+        }
+    }
+    post {
+        success { echo "Express deployed successfully!" }
+        failure { echo "Express deployment failed!" }
+    }
+}
